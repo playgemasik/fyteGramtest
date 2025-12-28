@@ -1,1 +1,87 @@
-# fyteGramtest
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ввод имени</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #8500be, #6d0f0f);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  h1 {
+    color: #fff;
+    margin-bottom: 20px;
+  }
+
+  input[type="text"] {
+    width: 80%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #8a2d2d;
+    border-radius: 10px;
+    outline: none;
+    background: transparent;
+    color: #692929;
+  }
+
+  input[type="text"]:focus {
+    border-color: #724242;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #770606;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #5e0a0a;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Введите ваше имя/никнейм</h1>
+    <input type="text" id="nameInput" placeholder=" " />
+    <br />
+    <button onclick="saveName()">Продолжить</button>
+</div>
+
+<script>
+  function saveName() {
+    const name = document.getElementById('nameInput').value.trim();
+    if (name) {
+      localStorage.setItem('nickname', name);
+      // После сохранения переходим на страницу с приветствием
+      window.location.href = 'greeting.html'; // создайте отдельный файл greeting.html
+    } else {
+      alert('Введите ваше имя/никнейм');
+    }
+  }
+</script>
+</body>
+</html>
