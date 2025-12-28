@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Меню с переходом на один сайт</title>
+<!-- Подключим иконки Font Awesome для иконок -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: #121212;
+    display: flex;
+    height: 100vh;
+    color: #fff;
+  }
+
+  /* Левая боковая панель */
+  .sidebar {
+    width: 250px;
+    background: linear-gradient(135deg, #232526, #1c1c1c);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+  }
+
+  /* Фото сверху */
+  .top-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    object-fit: cover;
+    margin-bottom: 15px;
+    box-shadow: 0 0 15px #fff inset, 0 0 10px #fff;
+    cursor: pointer;
+  }
+
+  /* Заголовок */
+  .sidebar h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+    text-align: center;
+  }
+
+  /* Меню */
+  .menu {
+    width: 100%;
+  }
+
+  /* Стиль для ссылок меню */
+  .menu-item {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    background: rgba(255,255,255,0.05);
+    transition: all 0.3s;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Ховер для пунктов меню */
+  .menu-item:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateX(10px);
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+
+  .menu-item i {
+    font-size: 20px;
+    margin-right: 15px;
+    width: 24px;
+    text-align: center;
+  }
+
+  .menu-item span {
+    font-size: 16px;
+  }
+
+  /* Основной контейнер справа */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #0f2027, #203a43);
+    padding: 20px;
+    overflow-y: auto;
+  }
+
+  /* Заголовок страницы */
+  .header {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+    margin: 0;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+
+  /* Карточки меню */
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .menu-card {
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    width: 180px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .menu-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  }
+
+  .menu-card i {
+    font-size: 40px;
+    margin-bottom: 15px;
+    display: block;
+  }
+
+  .menu-card h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #fff;
+  }
+
+  /* Фото внизу страницы */
+  .bottom-image-container {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .bottom-image {
+    max-width: 300px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+
+  /* Описание под изображением */
+  .image-description {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ddd;
+  }
+</style>
+</head>
+<body>
+
+<!-- Левая панель -->
+<div class="sidebar">
+  <!-- Фото сверху -->
+  <img src="png.22" alt="Ваше фото" class="top-photo" />
+  <h2>Настройки</h2>
+  <!-- Меню -->
+  <div class="menu">
+    <a href="профиль.html" class="menu-item">
+      <i class="fas fa-user"></i>
+      <span>Профиль</span>
+    </a>
+    <a href="index.html" class="menu-item">
+      <i class="fas fa-bell"></i>
+      <span>Уведомления</span>
+    </a>
+    <a href="месенджер.html" class="menu-item">
+      <i class="fas fa-comments"></i>
+      <span>Сообщения</span>
+    </a>
+    <a href="Stars.html" class="menu-item">
+      <i class="fas fa-cog"></i>
+      <span>FyteStars</span>
+    </a>
+  </div>
+</div>
+
+<!-- Основной контент справа -->
+<div class="main">
+  <div class="header">
+    <h1>Мое стильное меню</h1>
+  </div>
+  <!-- Карточки меню -->
+  <div class="content">
+    <div class="menu-card" onclick="location.href='.html'">
+      <i class="fas fa-home"></i>
+      <h3>Главная</h3>
+    </div>
+    <div class="menu-card" onclick="location.href='профиль.html'">
+      <i class="fas fa-user"></i>
+      <h3>Профиль</h3>
+    </div>
+    <div class="menu-card" onclick="location.href='месенджер.html'">
+      <i class="fas fa-comments"></i>
+      <h3>Сообщения</h3>
+    </div>
+    <div class="menu-card" onclick="location.href='FytePremium.html'">
+      <i class="fas fa-cog"></i>
+      <h3>FytePremium</h3>
+    </div>
+  </div>
+  <!-- Фото внизу с описанием -->
+  <div class="bottom-image-container">
+    <img src="png.22" alt="Дополнительное фото" class="bottom-image" />
+    <div class="image-description">Выход FyteGram - состоится 25 Ноября!</div>
+  </div>
+</div>
+
+</body>
+</html>

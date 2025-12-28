@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Голубой стиль с снежками</title>
+<!-- Подключение шрифта -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* по вертикали */
+    justify-content: space-between; /* разделяет сверху и снизу */
+    align-items: center;
+    background: linear-gradient(135deg, #89f7fe, #66a6ff); /* голубой градиент */
+    font-family: 'Montserrat', sans-serif;
+    overflow: hidden;
+    padding: 20px;
+  }
+
+  /* Верхняя часть: название и поиск с аккаунтом справа */
+  .top-section {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* слева и справа */
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    animation: slideDown 1s ease-out;
+  }
+
+  /* Название по центру */
+  .title {
+    flex: 1;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2em;
+    margin: 0;
+    color: #fff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7;
+    animation: pulse 2s infinite;
+  }
+
+  /* Контейнер для поиска и аккаунта */
+  .search-account-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  /* Поиск */
+  .search-section {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1em;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px #fff inset;
+    background-color: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+
+  input[type="text"]:focus {
+    box-shadow: 0 0 25px #00ffe7 inset;
+    background-color: rgba(255,255,255,0.3);
+    color: #fff;
+  }
+
+  /* Рамка аккаунта справа */
+  .account-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .account-frame {
+    padding: 20px 30px;
+    border: 3px solid #fff;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    /* Анимация входа */
+    opacity: 0;
+    transform: translateY(-50px);
+    animation: appearFromTop 1s forwards;
+  }
+
+  /* Анимации */
+  @keyframes appearFromTop {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { text-shadow: 0 0 10px #00ffe7, 0 0 20px #00ffe7; }
+    50% { text-shadow: 0 0 20px #00ffe7, 0 0 40px #00ffe7; }
+  }
+  @keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+  }
+
+  /* Снежки */
+  .snowflake {
+    position: absolute;
+    top: -10px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    width: 8px;
+    height: 8px;
+    box-shadow: 0 0 10px #fff;
+    animation: fall 10s linear forwards;
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+
+  /* Общие анимации */
+  @keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  /* Мобильные стили */
+  @media(max-width: 768px){
+    h1 {
+      font-size: 1.5em;
+    }
+    input[type="text"] {
+      max-width: 250px;
+    }
+    .search-account-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Верхняя часть: название и поиск с аккаунтом справа -->
+<div class="top-section">
+  <div class="title">
+    <h1>🔥 Найди что угодно! 🔥</h1>
+  </div>
+  <div class="search-account-container">
+    <!-- Поиск слева -->
+    <div class="search-section">
+      <input type="text" placeholder="Введите запрос..." />
+    </div>
+    <!-- Аккаунт справа -->
+    <div class="account-container">
+      <div class="account-frame">
+        <div class="avatar-container">
+          <div class="avatar">
+            <img src="https://i.imgur.com/png.22" alt="Аватар" />
+          </div>
+          <div class="name">welsin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Снежки -->
+<script>
+  // Создавать снежинки
+  function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.className = 'snowflake';
+    snowflake.style.left = Math.random() * 100 + 'vw';
+    const size = Math.random() * 4 + 4;
+    snowflake.style.width = size + 'px';
+    snowflake.style.height = size + 'px';
+    snowflake.style.animationDuration = (5 + Math.random() * 5) + 's';
+    document.body.appendChild(snowflake);
+    setTimeout(() => { snowflake.remove(); }, 15000);
+  }
+  setInterval(createSnowflake, 300);
+</script>
+
+</body>
+</html>

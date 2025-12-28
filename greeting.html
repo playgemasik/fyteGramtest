@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Приветствие</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #8e44ad, #9b59b6);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .greeting {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+</style>
+</head>
+<body>
+<div class="greeting" id="greeting"></div>
+
+<script>
+  const name = localStorage.getItem('nickname');
+  if (name) {
+    document.getElementById('greeting').innerText = 'Привет, ' + name + '!';
+    // автоматический переход через 2 секунды
+    setTimeout(() => {
+      window.location.href = 'Настройки.html';
+    }, 2000);
+  } else {
+    // если никнейма нет, вернуться на страницу ввода
+    window.location.href = 'index.html'; // замените на ваш файл для ввода
+  }
+</script>
+</body>
+</html>

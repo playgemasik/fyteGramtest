@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Настройки пользователя</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Падающие снежинки */
+.snow {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Стиль контейнера профиля */
+.profile-container {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+/* Аватарка */
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 10px;
+  border: 3px solid #d6336c;
+  cursor: pointer;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.avatar:hover {
+  transform: scale(1.05);
+  border-color: #ff79c6;
+}
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Основной никнейм */
+.nickname {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #fff;
+  text-align: center;
+}
+
+/* Тип юзвес */
+.userves {
+  font-size: 1em;
+  margin-bottom: 5px;
+  color: #ddd;
+  text-align: center;
+}
+
+/* Контактный номер */
+.contact-number {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #ccc;
+  text-align: center;
+}
+
+/* Повторяющийся элемент */
+.additional-info {
+  font-size: 1em;
+  margin-bottom: 10px;
+  color: #bbb;
+  text-align: center;
+}
+
+/* Элемент "подним" с переливающимися цветами (синий, фиолетовый, желтый) */
+.raise {
+  font-size: 1em;
+  margin-bottom: 20px;
+  background: linear-gradient(270deg, #0000ff, #8000ff, #ffff00);
+  background-size: 600% 600%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow3 5s linear infinite;
+  text-align: center;
+}
+
+/* Анимация переливающихся цветов */
+@keyframes rainbow3 {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Кнопка сохранить */
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #a770ef, #cf8bf3);
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 10px #fff;
+}
+</style>
+</head>
+<body>
+
+<!-- Падающие снежинки -->
+<div class="snow" id="snow"></div>
+
+<div class="profile-container">
+  <div class="avatar" id="avatar">
+    <img src="png.22" alt="Аватар" id="avatar-img" />
+  </div>
+  <div class="nickname" id="main-nickname">welsin</div>
+  <div class="userves" id="userves">юзвес</div>
+  <div class="contact-number" id="contact-number">+888 888 888</div>
+  <div class="additional-info" id="additional-info">NFT - Юзернеймы</div>
+  <div class="raise" id="raise">crow - а также<br>𝘄𝗲𝗹𝘀𝗶𝗻, 𝗹𝗮𝘃𝗿𝘂𝘀𝗵𝗸𝗮, 𝗱𝗮𝗻𝗶𝗹𝗻𝘂𝘅</div>
+  <button onclick="saveSettings()">Сохранить</button>
+</div>
+
+<script>
+  // Создание снежинок
+  function createSnowflake() {
+    const snowflake = document.createElement('div');
+    snowflake.className = 'flake';
+    snowflake.style.position = 'absolute';
+    snowflake.style.top = '-2px';
+    snowflake.style.left = Math.random() * window.innerWidth + 'px';
+    snowflake.style.width = Math.random() * 8 + 2 + 'px';
+    snowflake.style.height = snowflake.style.width;
+    snowflake.style.backgroundColor = 'white';
+    snowflake.style.borderRadius = '50%';
+    snowflake.style.opacity = Math.random();
+    snowflake.style.transform = `translateY(0) rotate(${Math.random() * 360}deg)`;
+    document.getElementById('snow').appendChild(snowflake);
+
+    // Анимация падения
+    const fallDuration = Math.random() * 5 + 5; // 5-10 сек
+    const fall = snowflake.animate([
+      { transform: `translateY(0)` },
+      { transform: `translateY(${window.innerHeight + 50}px)` }
+    ], {
+      duration: fallDuration * 1000,
+      iterations: 1,
+      easing: 'linear'
+    });
+    fall.onfinish = () => {
+      snowflake.remove();
+    };
+  }
+
+  // Запуск снежинок
+  setInterval(createSnowflake, 300);
+
+  // Обработка клика по аватару
+  document.getElementById('avatar').addEventListener('click', () => {
+    alert('Здесь можно выбрать новый аватар');
+  });
+
+  function saveSettings() {
+    // Тут можно сохранить настройки
+    // Сейчас просто редирект
+    window.location.href = "Настройки.html";
+  }
+</script>
+
+</body>
+</html>
